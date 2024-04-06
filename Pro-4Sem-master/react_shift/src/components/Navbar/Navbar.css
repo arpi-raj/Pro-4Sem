@@ -13,4 +13,50 @@
     grid-template-columns: 5rem 1fr 2fr 1fr 5rem;
   }
 
-    
+  .main-nav li:hover{
+    color: #e40814;
+   text-decoration: underline;
+  }
+  
+  .active{
+    color: #e40814;
+  }
+
+  .logo {
+    grid-column: 2/3;
+    justify-content: start;
+    align-items: center;
+    display: grid;
+  }
+
+  .logo h2 {
+    font-size: 2rem;
+    font-weight: bolder;
+    color: #e40814;
+  }
+
+
+  .header-content {
+    grid-column: 3/4;
+  }
+
+  .header-content ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  align-items: center;
+  }
+
+  .header-content ul li {
+    font-size: 1.25rem;
+    /* font-family: 'Work Sans', sans-serif; */
+    font-weight: bold;
+    color: black;
+  }
+  
+  .connect-button {
+    grid-column: 4/5;
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
