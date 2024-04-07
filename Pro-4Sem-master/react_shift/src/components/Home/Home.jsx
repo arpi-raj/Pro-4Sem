@@ -1,11 +1,13 @@
 import './Home.css';
+import { useLocation } from 'react-router-dom'
+
 // import { Contract, ethers } from "ethers";
 // import abi from "../../../../artifacts/contracts/voterr.sol/voterr.json";
 
 // const contAddr = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
 // const contAbi = abi.abi;
 
-function Home() {
+function Home(props) {
 
   // const connectToMetaMask = async () => {
   //   if (ethereum) {
@@ -43,7 +45,10 @@ function Home() {
   //     throw new Error("Ethereum not available"); // Throw an error to be caught elsewhere if needed
   //   }
   // };
-  
+  const location = useLocation()
+  console.log(location)
+  // const {addrs}=location.state;
+  // console.log("adowima",addrs)
 
   return (
   <div className="body">
@@ -52,7 +57,7 @@ function Home() {
         <h1>Welcome to DeVo</h1>
         <p>A decentralized voting web app for all</p>
       </div>
-      <button onClick="connect">Connect Wallet</button>
+      <button onClick="connect">Connect Wallet </button>
     </div>
     <script type="module" src="/main.js"></script>
   </div>

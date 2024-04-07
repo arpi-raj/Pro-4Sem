@@ -1,62 +1,83 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-   
-  }
-  
-  .main-nav{
-    width: 100%;
-    height: 12vh;
-    background-color: aqua;
-    display: grid;
-    grid-template-columns: 5rem 1fr 2fr 1fr 5rem;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #010001;
+  text-decoration: none;
+}
 
-  .main-nav li:hover{
-    color: #e40814;
-   text-decoration: underline;
-  }
-  
-  .active{
-    color: #e40814;
-  }
+.main-nav {
+  width: 100%;
+  height: 12vh;
+  /* background-color: aqua; */
+  display: grid;
+  grid-template-columns: 10rem 1fr 4fr 2fr 5rem;
+}
 
-  .logo {
-    grid-column: 2/3;
-    justify-content: start;
-    align-items: center;
-    display: grid;
-  }
+.main-nav li:hover {
+  text-decoration: underline;
+}
 
-  .logo h2 {
-    font-size: 2rem;
-    font-weight: bolder;
-    color: #e40814;
-  }
+.active {
+    text-decoration: underline;
+}
 
-
-  .header-content {
-    grid-column: 3/4;
-  }
-
-  .header-content ul{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+.logo {
+  grid-column: 2/3;
+  justify-content: start;
   align-items: center;
-  }
+  display: grid;
+}
 
-  .header-content ul li {
-    font-size: 1.25rem;
-    /* font-family: 'Work Sans', sans-serif; */
-    font-weight: bold;
-    color: black;
-  }
-  
-  .connect-button {
-    grid-column: 4/5;
-    margin-left: auto;
-    margin-top: auto;
-    margin-bottom: auto;
-  }
+.logo h2 {
+  font-size: 3.5rem;
+  font-weight: bolder;
+}
+
+.header-content {
+  grid-column: 3/4;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: center;
+  /* background-color: orange; */
+}
+
+.header-content ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  list-style-type: none;
+  /* background-color: aqua; */
+}
+
+.header-content ul li {
+  font-size: 30px;
+  /* font-family: 'Work Sans', sans-serif; */
+  font-weight: bold;
+  color: black;
+}
+
+.connect-button {
+  grid-column: 4/5;
+  margin-left: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.connect-button button {
+  color: #010001;
+  padding: auto auto auto auto;
+  width: 250px;
+  height: 45px;
+  font-size: 1.2rem;
+  border-style: solid;
+  border-color: #010001;
+  border-radius: 12px;
+  font-weight: bolder;
+}
+
+.connect-button button:hover {
+  cursor: pointer;
+}
