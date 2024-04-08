@@ -4,7 +4,7 @@ import { ethers } from "ethers";
 import "./Navbar.css";
 
 export default function Navbar() {
-  const [address, setAddress] = useState("0x0000000000000");
+  const [address, setAddress] = useState("0x00000000000000");
   const [connect, setConnect] = useState(false);
 
   async function connectWallet() {
@@ -26,8 +26,9 @@ export default function Navbar() {
       <div className="header-content">
         <ul>
           <li>
-            <NavLink to='/' state={{ addrs:`${address}` }}
-     >Home</NavLink>
+            <NavLink to="/" state={{ addrs: address }}>
+              Home
+            </NavLink>
           </li>
           <li>
             <NavLink to="/start/registration">Reg</NavLink>
@@ -39,7 +40,11 @@ export default function Navbar() {
       </div>
       <div className="connect-button">
         <button onClick={connectWallet}>
-          {connect ? <p>Connected</p> : <p>Connect Wallet</p>}
+          {connect ? (
+            <p style={{ color: "white" }}>Connected</p>
+          ) : (
+            <p style={{ color: "white" }}>Connect Wallet</p>
+          )}
         </button>
       </div>
     </nav>

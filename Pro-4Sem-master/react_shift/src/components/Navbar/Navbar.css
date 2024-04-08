@@ -11,7 +11,11 @@
   height: 12vh;
   /* background-color: aqua; */
   display: grid;
-  grid-template-columns: 10rem 1fr 4fr 2fr 5rem;
+  grid-template-columns: 10rem 1fr 5fr 2fr 5rem;
+  border-style: double;
+  border-color: black;
+  border-width: thick;
+  
 }
 
 .main-nav li:hover {
@@ -31,7 +35,6 @@
 
 .logo h2 {
   font-size: 3.5rem;
-  font-weight: bolder;
 }
 
 .header-content {
@@ -45,17 +48,19 @@
 
 .header-content ul {
   display: flex;
+  padding-top: 25px;
   flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
+  /* justify-content: space-around; */
+  gap: 80px;
+  /* align-items: center; */
   list-style-type: none;
   /* background-color: aqua; */
 }
 
 .header-content ul li {
-  font-size: 30px;
+  font-size: 25px;
   /* font-family: 'Work Sans', sans-serif; */
-  font-weight: bold;
+  font-weight: medium;
   color: black;
 }
 
@@ -67,17 +72,21 @@
 }
 
 .connect-button button {
-  color: #010001;
   padding: auto auto auto auto;
   width: 250px;
   height: 45px;
   font-size: 1.2rem;
   border-style: solid;
-  border-color: #010001;
-  border-radius: 12px;
-  font-weight: bolder;
+  background-color: #4caf50;
+  border: none;
+
+  /* border-color: #010001; */
+  border-radius: 8px;
+  /* font-weight: bolder; */
 }
 
 .connect-button button:hover {
   cursor: pointer;
+  background-color: #45a049;
+
 }
