@@ -39,13 +39,14 @@ export default function Navbar() {
         </ul>
       </div>
       <div className="connect-button">
-        <button onClick={connectWallet}>
+      <NavLink to="/" state={{ addrs: address }}>
+ <button onClick={connectWallet}>
           {connect ? (
             <p style={{ color: "white" }}>Connected</p>
           ) : (
             <p style={{ color: "white" }}>Connect Wallet</p>
           )}
-        </button>
+        </button></NavLink>
       </div>
     </nav>
   );

@@ -65,7 +65,7 @@ if(location.state){
           <h1>Welcome to DeVo</h1>
           <p>A decentralized voting web app for all</p>
         </div>
-        <button onClick="connect">Connect Wallet  {addd.addrs}</button>
+        <button onClick="connect">{addd.addrs}</button>
       </div>
       <script type="module" src="/main.js"></script>
     </div>
