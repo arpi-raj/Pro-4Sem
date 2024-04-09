@@ -2,7 +2,7 @@ import "./Admin.css";
 
 export default function Admin() {
   return (
-    <div>
+    <div className="admin-page">
       <div id="words">
         <h1>ADMIN CONSOLE</h1>
         <h3>Here we will have all the admin privileges</h3>
