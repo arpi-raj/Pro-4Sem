@@ -1,6 +1,8 @@
 import "./Home.css";
 import { useLocation } from "react-router-dom";
 import { useEffect,useState } from "react";
+import { useAccount } from "wagmi";
+
 
 // import { Contract, ethers } from "ethers";
 // import abi from "../../../../artifacts/contracts/voterr.sol/voterr.json";
@@ -45,18 +47,19 @@ function Home() {
   //     throw new Error("Ethereum not available"); // Throw an error to be caught elsewhere if needed
   //   }
   // };
-  const [addd,setLocation]=useState({addrs:""});
-  const location = useLocation();
+//   const [addd,setLocation]=useState({addrs:""});
+//   const location = useLocation();
 
 
-  useEffect(()=>{
-console.log("uselocattion :::: ",location)
-if(location.state){
-  let _state=location.state;
-  setLocation(_state);
-}
-  },[location])
-  
+//   useEffect(()=>{
+// console.log("uselocattion :::: ",location)
+// if(location.state){
+//   let _state=location.state;
+//   setLocation(_state);
+// }
+//   },[location])
+const { address } = useAccount();
+
 
   return (
     <div className="body">
@@ -65,7 +68,7 @@ if(location.state){
           <h1>Welcome to DeVo</h1>
           <p>A decentralized voting web app for all</p>
         </div>
-        <button onClick="connect">{addd.addrs}</button>
+        <button >{address ? address : "0x000000000000000" }</button>
       </div>
       <script type="module" src="/main.js"></script>
     </div>

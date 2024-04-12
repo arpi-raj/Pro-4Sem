@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { ethers } from "ethers";
+import { ConnectKitButton } from "connectkit";
 import "./Navbar.css";
 
 export default function Navbar() {
@@ -39,14 +40,8 @@ export default function Navbar() {
         </ul>
       </div>
       <div className="connect-button">
-      <NavLink to="/" state={{ addrs: address }}>
- <button onClick={connectWallet}>
-          {connect ? (
-            <p style={{ color: "white" }}>Connected</p>
-          ) : (
-            <p style={{ color: "white" }}>Connect Wallet</p>
-          )}
-        </button></NavLink>
+      <ConnectKitButton />
+
       </div>
     </nav>
   );

@@ -71,7 +71,7 @@
   margin-bottom: auto;
 }
 
-.connect-button button {
+/* .connect-button button {
   padding: auto auto auto auto;
   width: 250px;
   height: 45px;
@@ -80,13 +80,11 @@
   background-color: #4caf50;
   border: none;
 
-  /* border-color: #010001; */
   border-radius: 8px;
-  /* font-weight: bolder; */
 }
 
 .connect-button button:hover {
   cursor: pointer;
   background-color: #45a049;
 
-}
+} */
