@@ -32,11 +32,15 @@ export default function Navbar() {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/start/registration">Reg</NavLink>
+            <NavLink to="/registration">Reg</NavLink>
+          </li>
+          <li>
+            <NavLink to="/vote">Vote</NavLink>
           </li>
           <li>
             <NavLink to="/about">About</NavLink>
           </li>
+         
         </ul>
       </div>
       <div className="connect-button">
