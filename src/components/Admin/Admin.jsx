@@ -12,18 +12,25 @@ export default function Admin() {
       </div>
 
       <div className="grid-container">
-        <div className="grid-item">
+        <div className="grid-item2">
           <input
             className="inp"
             id="regCan"
-            placeholder="Register Candidate (Name,Party)"
+            placeholder="Register Candidate (Name)"
+            style={{ width: "40%" }}
+          />
+          <input
+            className="inp"
+            id="regCan"
+            placeholder="Register Candidate (Party)"
+            style={{ width: "40%" }}
           />
         </div>
         <div className="grid-item">
           <button>Register Candidate</button>
         </div>
 
-        <div className="grid-item">
+        <div className="grid-item2">
           <input
             className="inp"
             id="regVoter"
@@ -33,8 +40,7 @@ export default function Admin() {
         <div className="grid-item">
           <button>Register Voter</button>
         </div>
-
-        <div className="grid-item">
+        <div className="grid-item2">
           <input
             className="inp"
             id="chAdm"
@@ -45,14 +51,13 @@ export default function Admin() {
           <button>Change Admin</button>
         </div>
 
-        <div className="grid-item">
+        <div className="grid-item2">
           <input className="inp" id="teri" placeholder="Thaari M (Name)" />
         </div>
         <div className="grid-item">
           <button id="teribtn">Teri Ki</button>
         </div>
       </div>
-
       <div className="additional-buttons">
         <button>Close Voting</button>
         <button>Re-Open Voting</button>

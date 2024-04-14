@@ -8,17 +8,17 @@ export default function Vote() {
   ]);
 
   return (
-    <div className="admin-page">
+    <div className="admin-page1">
       <div id="words">
         <h1>VOTE</h1>
       </div>
 
-      <div className="grid-container">
-        <div className="grid-item">
+      <div className="grid-container1">
+        <div className="grid-item1">
           {dummy.map((val, id) => {
             return (
-              <div className="block">
-                <div className="party">
+              <div className="block1">
+                <div className="party1">
                 <div>
                   <h1>{val.name}</h1>
                 </div>

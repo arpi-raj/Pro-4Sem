@@ -14,11 +14,32 @@
 
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Two columns with equal width */
-  grid-gap: 10px; /* Gap between grid items */
+  grid-template-columns: auto auto;
+  margin-left: 50px;
+  margin-right: 50px;
 }
 
+
+/* .grod{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 200px;
+} */
+
 /* Style for grid items */
+.grid-item2 {
+  padding: 10px; /* Smaller padding */
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  gap: 20px;
+  
+}
 .grid-item {
   padding: 10px; /* Smaller padding */
   text-align: center;
@@ -32,11 +53,12 @@
   font-size: 14px;
   border: none;
   cursor: pointer;
-  width: 80%; /* Adjusted width */
+  width: 100%; /* Adjusted width */
+  white-space: nowrap;
 }
 
 /* Style for the input elements */
-.grid-item input {
+.grid-item2 input {
   width: 80%; /* 80% width for the input */
   padding: 8px; /* Smaller padding for the input */
   box-sizing: border-box; /* Include padding in the width */
