@@ -1,6 +1,23 @@
+import { useState } from "react";
 import "./Admin.css";
 
 export default function Admin() {
+  const [admin, setAdmin] = useState({
+    candidate_name: "",
+    candidate_party: "",
+    register_address: "",
+    admin_address: "",
+    teri: "",
+  });
+
+  const handleInput = async (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    console.log(name, value);
+
+    setAdmin({ ...admin, [name]: value });
+  };
+
   return (
     <div className="admin-page">
       <div id="words">
@@ -15,13 +32,21 @@ export default function Admin() {
         <div className="grid-item2">
           <input
             className="inp"
-            id="regCan"
+            id="candidate_name"
+            name="candidate_name"
+            value={admin.candidate_name}
+            onChange={handleInput}
+            type="text"
             placeholder="Register Candidate (Name)"
             style={{ width: "40%" }}
           />
           <input
             className="inp"
-            id="regCan"
+            id="candidate_party"
+            name="candidate_party"
+            value={admin.candidate_party}
+            onChange={handleInput}
+            type="text"
             placeholder="Register Candidate (Party)"
             style={{ width: "40%" }}
           />
@@ -33,7 +58,11 @@ export default function Admin() {
         <div className="grid-item2">
           <input
             className="inp"
-            id="regVoter"
+            id="register_address"
+            name="register_address"
+            value={admin.register_address}
+            onChange={handleInput}
+            type="text"
             placeholder="Register Voter (Address)"
           />
         </div>
@@ -43,7 +72,11 @@ export default function Admin() {
         <div className="grid-item2">
           <input
             className="inp"
-            id="chAdm"
+            id="admin_address"
+            name="admin_address"
+            value={admin.admin_address}
+            onChange={handleInput}
+            type="text"
             placeholder="Change Admin (Address)"
           />
         </div>
@@ -52,7 +85,15 @@ export default function Admin() {
         </div>
 
         <div className="grid-item2">
-          <input className="inp" id="teri" placeholder="Thaari M (Name)" />
+          <input
+            className="inp"
+            id="teri"
+            name="teri"
+            value={admin.teri}
+            onChange={handleInput}
+            type="text"
+            placeholder="Thaari M (Name)"
+          />
         </div>
         <div className="grid-item">
           <button id="teribtn">Teri Ki</button>
