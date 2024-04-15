@@ -1,0 +1,90 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #010001;
+  text-decoration: none;
+}
+
+.main-nav {
+  width: 100%;
+  height: 12vh;
+  /* background-color: aqua; */
+  display: grid;
+  grid-template-columns: 10rem 1fr 5fr 2fr 5rem;
+  border-style: double;
+  border-color: black;
+  border-width: thick;
+  
+}
+
+.main-nav li:hover {
+  text-decoration: underline;
+}
+
+.active {
+    text-decoration: underline;
+}
+
+.logo {
+  grid-column: 2/3;
+  justify-content: start;
+  align-items: center;
+  display: grid;
+}
+
+.logo h2 {
+  font-size: 3.5rem;
+}
+
+.header-content {
+  grid-column: 3/4;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: center;
+  /* background-color: orange; */
+}
+
+.header-content ul {
+  display: flex;
+  padding-top: 25px;
+  flex-direction: row;
+  /* justify-content: space-around; */
+  gap: 80px;
+  /* align-items: center; */
+  list-style-type: none;
+  /* background-color: aqua; */
+}
+
+.header-content ul li {
+  font-size: 25px;
+  /* font-family: 'Work Sans', sans-serif; */
+  font-weight: medium;
+  color: black;
+}
+
+.connect-button {
+  grid-column: 4/5;
+  margin-left: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+/* .connect-button button {
+  padding: auto auto auto auto;
+  width: 250px;
+  height: 45px;
+  font-size: 1.2rem;
+  border-style: solid;
+  background-color: #4caf50;
+  border: none;
+
+  border-radius: 8px;
+}
+
+.connect-button button:hover {
+  cursor: pointer;
+  background-color: #45a049;
+
+} */

@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { ethers } from "ethers";
 import { ConnectKitButton } from "connectkit";
 import "./Navbar.css";
+import { Web3Provider } from "../../Web3Provider";
 
 export default function Navbar() {
   const [address, setAddress] = useState("0x00000000000000");
@@ -44,7 +45,8 @@ export default function Navbar() {
         </ul>
       </div>
       <div className="connect-button">
-      <ConnectKitButton />
+        <Web3Provider> <ConnectKitButton /></Web3Provider>
+     
 
       </div>
     </nav>

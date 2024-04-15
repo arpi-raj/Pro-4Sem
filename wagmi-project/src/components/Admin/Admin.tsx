@@ -1,5 +1,10 @@
 import { useState } from "react";
 import "./Admin.css";
+import { sepolia } from "wagmi/chains";
+
+import { useWriteContract,useReadContract,useAccount } from "wagmi";
+import voterabi from "../../../../react_shift/hardhat/artifacts/contracts/voterr.sol/voterr.json";
+import voterrrAddress from "../../smartContractAddress.json";
 
 export default function Admin() {
   const [admin, setAdmin] = useState({
@@ -10,7 +15,7 @@ export default function Admin() {
     teri: "",
   });
 
-  const handleInput = async (event) => {
+  const handleInput = async (event:any) => {
     const name = event.target.name;
     const value = event.target.value;
     console.log(name, value);
@@ -18,6 +23,27 @@ export default function Admin() {
     setAdmin({ ...admin, [name]: value });
   };
 
+  const { writeContract } = useWriteContract();
+  const abi = voterabi.abi;
+  const { address } = useAccount();
+
+  try{
+    (async()=>{
+      const result = await useReadContract({
+        abi,
+        address: voterrrAddress.smartContractAddress as `0x${string}`,
+        functionName: 'getCandidatesInfo',
+        account: address,
+        chainId: sepolia.id,
+      })
+      console.log(`dattttttttttttttta : ${JSON.stringify(result.data)}`)
+    })();
+   
+  }catch(e){
+    console.log(`Erorrrr : ${e}`)
+  }
+
+  
   return (
     <div className="admin-page">
       <div id="words">
@@ -52,7 +78,18 @@ export default function Admin() {
           />
         </div>
         <div className="grid-item">
-          <button>Register Candidate</button>
+          <button
+            onClick={() =>
+              writeContract({
+                abi,
+                address: voterrrAddress.smartContractAddress as `0x${string}`,
+                functionName: "registerCandidate",
+                args: [admin.candidate_name, admin.candidate_party],
+              })
+            }
+          >
+            Register Candidate
+          </button>
         </div>
 
         <div className="grid-item2">
@@ -67,7 +104,18 @@ export default function Admin() {
           />
         </div>
         <div className="grid-item">
-          <button>Register Voter</button>
+          <button
+            onClick={() =>
+              writeContract({
+                abi,
+                address: voterrrAddress.smartContractAddress as `0x${string}`,
+                functionName: "registerVoter",
+                args: [admin.register_address],
+              })
+            }
+          >
+            Register Voter
+          </button>
         </div>
         <div className="grid-item2">
           <input
@@ -81,7 +129,18 @@ export default function Admin() {
           />
         </div>
         <div className="grid-item">
-          <button>Change Admin</button>
+          <button
+            onClick={() =>
+              writeContract({
+                abi,
+                address: voterrrAddress.smartContractAddress as `0x${string}`,
+                functionName: "changeAdmin",
+                args: [admin.admin_address],
+              })
+            }
+          >
+            Change Admin
+          </button>
         </div>
 
         <div className="grid-item2">
@@ -104,6 +163,9 @@ export default function Admin() {
         <button>Re-Open Voting</button>
         <button>Declare Result</button>
       </div>
+
+      <>Data : {result}</>
     </div>
   );
 }
+
