@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./Admin.css";
 import { sepolia } from "wagmi/chains";
 
-import { useWriteContract,useReadContract,useAccount } from "wagmi";
+import { useWriteContract,useReadContract,useAccount,useWatchContractEvent } from "wagmi";
 import voterabi from "../../../../react_shift/hardhat/artifacts/contracts/voterr.sol/voterr.json";
 import voterrrAddress from "../../smartContractAddress.json";
 
@@ -42,6 +42,15 @@ export default function Admin() {
   }catch(e){
     console.log(`Erorrrr : ${e}`)
   }
+
+  useWatchContractEvent({
+    address: '0x6b175474e89094c44da98b954eedeac495271d0f',
+    abi,
+    eventName: 'Transfer',
+    onLogs(logs) {
+      console.log('New logs!', logs)
+    },
+  })
 
   
   return (
