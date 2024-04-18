@@ -2,11 +2,11 @@ import { useState } from "react";
 import "./Admin.css";
 import { sepolia } from "wagmi/chains";
 import React from "react";
-
 import fs from 'fs';
 import { useWriteContract,useReadContract,useAccount,useWatchContractEvent} from "wagmi";
 import voterabi from "../../../../react_shift/hardhat/artifacts/contracts/voterr.sol/voterr.json";
 import voterrrAddress from "../../smartContractAddress.json";
+import data from "../../data.json";
 
 export default function Admin() {
   const [admin, setAdmin] = useState({
@@ -59,6 +59,9 @@ export default function Admin() {
     } 
   })
 
+const json_file="../../data.json";
+let num=1;
+
   return (
     <div className="admin-page">
       <div id="words">
@@ -94,7 +97,7 @@ export default function Admin() {
         </div>
         <div className="grid-item">
           <button
-            onClick={(():any =>{
+            onClick={():any =>{
               writeContract({
                 abi,
                 address: voterrrAddress.smartContractAddress as `0x${string}`,
@@ -102,18 +105,25 @@ export default function Admin() {
                 args: [admin.candidate_name, admin.candidate_party],
               })
 
-              try {
-                fs.writeFileSync(
-                  "../src/smartContractAddress.json",
-                  JSON.stringify({ candidate: voterrContract.target })
-                );
-              } catch (error) {
-                console.error(error);
+            //   try {
+            //    num++;
+            //   // let arr=JSON.parse(data);
+            //  data.candidate.push({
+            //     id:num,
+            //     name:admin.candidate_name,
+            //     party:admin.candidate_party
+            // });
+            //     fs.writeFileSync(
+            //       json_file,
+            //       JSON.stringify( data )
+            //     );
+            //   } catch (error) {
+            //     console.error(error);
             
-                throw error;
-              }
+            //     throw error;
+            //   }
               
-            })
+            }
             }
              
           >
@@ -172,7 +182,7 @@ export default function Admin() {
           </button>
         </div>
 
-        <div className="grid-item2">
+        {/* <div className="grid-item2">
           <input
             className="inp"
             id="teri"
@@ -185,11 +195,11 @@ export default function Admin() {
         </div>
         <div className="grid-item">
           <button id="teribtn">Teri Ki</button>
-        </div>
+        </div> */}
       </div>
       <div className="additional-buttons">
-        <button>Close Voting</button>
-        <button>Re-Open Voting</button>
+        {/* <button>Close Voting</button>
+        <button>Re-Open Voting</button> */}
         <button>Declare Result</button>
       </div>
 
