@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "./Admin.css";
 import { sepolia } from "wagmi/chains";
+import React from "react";
+
 
 import { useWriteContract,useReadContract,useAccount,useWatchContractEvent} from "wagmi";
 import voterabi from "../../../../react_shift/hardhat/artifacts/contracts/voterr.sol/voterr.json";

@@ -1,23 +1,25 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { ethers } from "ethers";
-import { ConnectKitButton } from "connectkit";
+// import { ethers } from "ethers";
+// import { ConnectKitButton } from "connectkit";
 import "./Navbar.css";
-import { Web3Provider } from "../../Web3Provider";
+// import { Web3Provider } from "../../Web3Provider";
+import React from "react";
+
 
 export default function Navbar() {
   const [address, setAddress] = useState("0x00000000000000");
   const [connect, setConnect] = useState(false);
 
-  async function connectWallet() {
-    const provider = new ethers.BrowserProvider(window.ethereum);
-    await window.ethereum.request({ method: "eth_requestAccounts" });
-    const signer = await provider.getSigner();
-    const _address = await signer.getAddress();
-    setAddress(_address);
-    console.log(_address);
-    setConnect(true);
-  }
+  // async function connectWallet() {
+  //   const provider = new ethers.BrowserProvider(window.ethereum);
+  //   await window.ethereum.request({ method: "eth_requestAccounts" });
+  //   const signer = await provider.getSigner();
+  //   const _address = await signer.getAddress();
+  //   setAddress(_address);
+  //   console.log(_address);
+  //   setConnect(true);
+  // }
   return (
     <nav className="main-nav">
       <div className="logo">
@@ -45,7 +47,7 @@ export default function Navbar() {
         </ul>
       </div>
       <div className="connect-button">
-        <Web3Provider> <ConnectKitButton /></Web3Provider>
+      <w3m-button/>
      
 
       </div>

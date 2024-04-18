@@ -1,0 +1,88 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+.admin-page {
+    height: 60vh;
+ /* background-color: aqua; */
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+
+/* .grod{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 200px;
+} */
+
+/* Style for grid items */
+.grid-item2 {
+  padding: 10px; /* Smaller padding */
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  gap: 20px;
+  
+}
+.grid-item {
+  padding: 10px; /* Smaller padding */
+  text-align: center;
+}
+
+/* Style for the button in the second column */
+.grid-item button {
+  padding: 12px; /* Larger padding for the button */
+  background-color: #4caf50;
+  color: white;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  width: 100%; /* Adjusted width */
+  white-space: nowrap;
+}
+
+/* Style for the input elements */
+.grid-item2 input {
+  width: 80%; /* 80% width for the input */
+  padding: 8px; /* Smaller padding for the input */
+  box-sizing: border-box; /* Include padding in the width */
+}
+
+#words {
+  text-align: center;
+  margin: auto;
+  max-width: auto; /* Adjust the max-width as needed */
+}
+
+/* Additional buttons outside the grid */
+.additional-buttons {
+  text-align: center;
+  margin-top: 20px; /* Adjust margin as needed */
+}
+
+.additional-buttons button {
+  padding: 10px; /* Adjusted padding for the button */
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  width: 20%; /* Adjusted width */
+  margin: 5px;
+  font-size: larger;
+}

@@ -1,7 +1,11 @@
 import { useState } from "react";
 import "./Admin.css";
-import { useWriteContract } from "wagmi";
-import voterabi from "../../../hardhat/artifacts/contracts/voterr.sol/voterr.json";
+import { sepolia } from "wagmi/chains";
+import React from "react";
+
+import fs from 'fs';
+import { useWriteContract,useReadContract,useAccount,useWatchContractEvent} from "wagmi";
+import voterabi from "../../../../react_shift/hardhat/artifacts/contracts/voterr.sol/voterr.json";
 import voterrrAddress from "../../smartContractAddress.json";
 
 export default function Admin() {
@@ -13,7 +17,7 @@ export default function Admin() {
     teri: "",
   });
 
-  const handleInput = async (event) => {
+  const handleInput = async (event:any) => {
     const name = event.target.name;
     const value = event.target.value;
     console.log(name, value);
@@ -23,6 +27,37 @@ export default function Admin() {
 
   const { writeContract } = useWriteContract();
   const abi = voterabi.abi;
+  const { address } = useAccount();
+  let result:any;
+
+  try{
+    (async()=>{
+       result = await useReadContract({
+        abi,
+        address: voterrrAddress.smartContractAddress as `0x${string}`,
+        functionName: 'getCandidatesInfo',
+        account: address,
+        chainId: sepolia.id,
+      })
+      console.log(`dattttttttttttttta : ${JSON.stringify(result.data)}`)
+    })();
+   
+  }catch(e){
+    console.log(`Erorrrr : ${e}`)
+  }
+
+  useWatchContractEvent({
+    address: voterrrAddress.smartContractAddress as `0x${string}`,
+    abi,
+    chainId: sepolia.id,
+    eventName: 'CandidateRegistered',
+    onLogs(logs) {  
+      console.log('New logs!', logs)
+    },
+    onError(error) { 
+      console.log('Error', error) 
+    } 
+  })
 
   return (
     <div className="admin-page">
@@ -59,14 +94,28 @@ export default function Admin() {
         </div>
         <div className="grid-item">
           <button
-            onClick={() =>
+            onClick={(():any =>{
               writeContract({
                 abi,
-                address: voterrrAddress.smartContractAddress,
+                address: voterrrAddress.smartContractAddress as `0x${string}`,
                 functionName: "registerCandidate",
                 args: [admin.candidate_name, admin.candidate_party],
               })
+
+              try {
+                fs.writeFileSync(
+                  "../src/smartContractAddress.json",
+                  JSON.stringify({ candidate: voterrContract.target })
+                );
+              } catch (error) {
+                console.error(error);
+            
+                throw error;
+              }
+              
+            })
             }
+             
           >
             Register Candidate
           </button>
@@ -88,7 +137,7 @@ export default function Admin() {
             onClick={() =>
               writeContract({
                 abi,
-                address: voterrrAddress.smartContractAddress,
+                address: voterrrAddress.smartContractAddress as `0x${string}`,
                 functionName: "registerVoter",
                 args: [admin.register_address],
               })
@@ -113,7 +162,7 @@ export default function Admin() {
             onClick={() =>
               writeContract({
                 abi,
-                address: voterrrAddress.smartContractAddress,
+                address: voterrrAddress.smartContractAddress as `0x${string}`,
                 functionName: "changeAdmin",
                 args: [admin.admin_address],
               })
@@ -143,6 +192,9 @@ export default function Admin() {
         <button>Re-Open Voting</button>
         <button>Declare Result</button>
       </div>
+
+      <>Data : {result}</>
     </div>
   );
 }
+

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./Vote.css";
+import React from "react";
 
 export default function Vote() {
   const [dummy, setDummy] = useState([

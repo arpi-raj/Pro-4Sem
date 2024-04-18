@@ -2,6 +2,8 @@ import "./Home.css";
 import { useLocation } from "react-router-dom";
 import { useEffect,useState } from "react";
 import { useAccount } from "wagmi";
+import React from "react";
+
 
 
 // import { Contract, ethers } from "ethers";
