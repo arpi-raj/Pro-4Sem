@@ -2,8 +2,13 @@ import { useState } from "react";
 import "./Admin.css";
 import { sepolia } from "wagmi/chains";
 import React from "react";
-import fs from 'fs';
-import { useWriteContract,useReadContract,useAccount,useWatchContractEvent} from "wagmi";
+import fs from "fs";
+import {
+  useWriteContract,
+  useReadContract,
+  useAccount,
+  useWatchContractEvent,
+} from "wagmi";
 import voterabi from "../../../../react_shift/hardhat/artifacts/contracts/voterr.sol/voterr.json";
 import voterrrAddress from "../../smartContractAddress.json";
 import data from "../../data.json";
@@ -17,7 +22,7 @@ export default function Admin() {
     teri: "",
   });
 
-  const handleInput = async (event:any) => {
+  const handleInput = async (event: any) => {
     const name = event.target.name;
     const value = event.target.value;
     console.log(name, value);
@@ -28,41 +33,38 @@ export default function Admin() {
   const { writeContract } = useWriteContract();
   const abi = voterabi.abi;
   const { address } = useAccount();
-  let result:any;
+  let result: any;
 
- 
-    // (async()=>{
-       result =  useReadContract({
-        abi,
-        address: voterrrAddress.smartContractAddress as `0x${string}`,
-        functionName: 'getCandidatesInfo',
-        account: address,
-        chainId: sepolia.id,
-      })
-      const a=result.data;
-      // a.forEach(item => {
-      //   console.log(`candidateId: ${item.candidateId}, name: ${item.name}, party: ${item.party}`);
-      // });
-      // console.log(`dattttttttttttttta : ${JSON.stringify(result.data)}`)
-    // })();
-   
-  
+  // (async()=>{
+  result = useReadContract({
+    abi,
+    address: voterrrAddress.smartContractAddress as `0x${string}`,
+    functionName: "getCandidatesInfo",
+    account: address,
+    chainId: sepolia.id,
+  });
+  const a = result.data;
+  // a.forEach(item => {
+  //   console.log(`candidateId: ${item.candidateId}, name: ${item.name}, party: ${item.party}`);
+  // });
+  // console.log(`dattttttttttttttta : ${JSON.stringify(result.data)}`)
+  // })();
 
   useWatchContractEvent({
     address: voterrrAddress.smartContractAddress as `0x${string}`,
     abi,
     chainId: sepolia.id,
-    eventName: 'CandidateRegistered',
-    onLogs(logs) {  
-      console.log('New logs!', logs)
+    eventName: "CandidateRegistered",
+    onLogs(logs) {
+      console.log("New logs!", logs);
     },
-    onError(error) { 
-      console.log('Error', error) 
-    } 
-  })
+    onError(error) {
+      console.log("Error", error);
+    },
+  });
 
-const json_file="../../data.json";
-let num=1;
+  const json_file = "../../data.json";
+  let num = 1;
 
   return (
     <div className="admin-page">
@@ -99,35 +101,32 @@ let num=1;
         </div>
         <div className="grid-item">
           <button
-            onClick={():any =>{
+            onClick={(): any => {
               writeContract({
                 abi,
                 address: voterrrAddress.smartContractAddress as `0x${string}`,
                 functionName: "registerCandidate",
                 args: [admin.candidate_name, admin.candidate_party],
-              })
+              });
 
-            //   try {
-            //    num++;
-            //   // let arr=JSON.parse(data);
-            //  data.candidate.push({
-            //     id:num,
-            //     name:admin.candidate_name,
-            //     party:admin.candidate_party
-            // });
-            //     fs.writeFileSync(
-            //       json_file,
-            //       JSON.stringify( data )
-            //     );
-            //   } catch (error) {
-            //     console.error(error);
-            
-            //     throw error;
-            //   }
-              
-            }
-            }
-             
+              //   try {
+              //    num++;
+              //   // let arr=JSON.parse(data);
+              //  data.candidate.push({
+              //     id:num,
+              //     name:admin.candidate_name,
+              //     party:admin.candidate_party
+              // });
+              //     fs.writeFileSync(
+              //       json_file,
+              //       JSON.stringify( data )
+              //     );
+              //   } catch (error) {
+              //     console.error(error);
+
+              //     throw error;
+              //   }
+            }}
           >
             Register Candidate
           </button>
@@ -200,25 +199,63 @@ let num=1;
         </div> */}
       </div>
       <div className="additional-buttons">
-        {/* <button>Close Voting</button>
-        <button>Re-Open Voting</button> */}
-        <button>Declare Result</button>
+        <button
+          onClick={() =>
+            writeContract({
+              abi,
+              address: voterrrAddress.smartContractAddress as `0x${string}`,
+              functionName: "closeVoting",
+            })
+          }
+        >
+          Close Voting
+        </button>
+        <button
+          onClick={() =>
+            writeContract({
+              abi,
+              address: voterrrAddress.smartContractAddress as `0x${string}`,
+              functionName: "reopenVoting",
+            })
+          }
+        >
+          Re-Open Voting
+        </button>
+        <button
+          onClick={() =>
+            writeContract({
+              abi,
+              address: voterrrAddress.smartContractAddress as `0x${string}`,
+              functionName: "declareResult",
+            })
+          }
+        >
+          Declare Result
+        </button>
       </div>
 
-      <div>Data :   {a && a.map((item: any) => (
-    <div key={item.candidateId}>
-      <div>candidateId: {Number(
-              JSON.parse(
-                JSON.stringify(item.candidateId, (key, value) => {
-                  return typeof value === "bigint" ? value.toString() : value;
-                })
-              )
-            )}</div>
-      <div>name: {item.name}</div>
-      <div>party: {item.party}</div>
-    </div>
-  ))}</div>
+      <div>
+        Data :{" "}
+        {a &&
+          a.map((item: any) => (
+            <div key={item.candidateId}>
+              <div>
+                candidateId:{" "}
+                {Number(
+                  JSON.parse(
+                    JSON.stringify(item.candidateId, (key, value) => {
+                      return typeof value === "bigint"
+                        ? value.toString()
+                        : value;
+                    })
+                  )
+                )}
+              </div>
+              <div>name: {item.name}</div>
+              <div>party: {item.party}</div>
+            </div>
+          ))}
+      </div>
     </div>
   );
 }
-
