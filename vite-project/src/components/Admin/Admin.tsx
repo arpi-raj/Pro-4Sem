@@ -205,14 +205,19 @@ let num=1;
         <button>Declare Result</button>
       </div>
 
-      <>Data : {  a?.forEach(item => {
-        console.log(`candidateId: ${item.candidateId}, name: ${item.name}, party: ${item.party}`);
- return(
-  <div>
-  wedqwdaw  {item.candidateId} ------ {item.name} --------- {item.party}
-  </div>
- )
-      })}</>
+      <div>Data :   {a && a.map((item: any) => (
+    <div key={item.candidateId}>
+      <div>candidateId: {Number(
+              JSON.parse(
+                JSON.stringify(item.candidateId, (key, value) => {
+                  return typeof value === "bigint" ? value.toString() : value;
+                })
+              )
+            )}</div>
+      <div>name: {item.name}</div>
+      <div>party: {item.party}</div>
+    </div>
+  ))}</div>
     </div>
   );
 }
