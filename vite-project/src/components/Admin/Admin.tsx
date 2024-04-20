@@ -30,21 +30,23 @@ export default function Admin() {
   const { address } = useAccount();
   let result:any;
 
-  try{
-    (async()=>{
-       result = await useReadContract({
+ 
+    // (async()=>{
+       result =  useReadContract({
         abi,
         address: voterrrAddress.smartContractAddress as `0x${string}`,
         functionName: 'getCandidatesInfo',
         account: address,
         chainId: sepolia.id,
       })
-      console.log(`dattttttttttttttta : ${JSON.stringify(result.data)}`)
-    })();
+      const a=result.data;
+      // a.forEach(item => {
+      //   console.log(`candidateId: ${item.candidateId}, name: ${item.name}, party: ${item.party}`);
+      // });
+      // console.log(`dattttttttttttttta : ${JSON.stringify(result.data)}`)
+    // })();
    
-  }catch(e){
-    console.log(`Erorrrr : ${e}`)
-  }
+  
 
   useWatchContractEvent({
     address: voterrrAddress.smartContractAddress as `0x${string}`,
@@ -203,7 +205,14 @@ let num=1;
         <button>Declare Result</button>
       </div>
 
-      <>Data : {result}</>
+      <>Data : {  a?.forEach(item => {
+        console.log(`candidateId: ${item.candidateId}, name: ${item.name}, party: ${item.party}`);
+ return(
+  <div>
+  wedqwdaw  {item.candidateId} ------ {item.name} --------- {item.party}
+  </div>
+ )
+      })}</>
     </div>
   );
 }
