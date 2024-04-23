@@ -43,17 +43,17 @@ export default function Admin() {
     chainId: sepolia.id,
   });
   const a = result.data;
-  if(a==undefined){
-    console.log("noooo")
-  }else{
-     a.forEach((item:any) => {
-    console.log(`candidateId: ${item.candidateId}, name: ${item.name}, party: ${item.party}`);
-  });
-  }
+  // if(a==undefined){
+  //   console.log("noooo")
+  // }else{
+  //    a.forEach((item:any) => {
+  //   console.log(`candidateId: ${item.candidateId}, name: ${item.name}, party: ${item.party}`);
+  // });
+  // }
   // a.forEach((item:any) => {
   //   console.log(`candidateId: ${item.candidateId}, name: ${item.name}, party: ${item.party}`);
   // });
-  console.log(`dattttttttttttttta : ${JSON.stringify(result.data)}`)
+  // console.log(`dattttttttttttttta : ${JSON.stringify(result.data)}`)
   // })();
 
   useWatchContractEvent({

@@ -12,6 +12,7 @@
   "dependencies": {
     "@tanstack/react-query": "^5.31.0",
     "@web3modal/wagmi": "^4.1.11",
+    "ethers": "^6.12.0",
     "fs": "^0.0.1-security",
     "hardhat": "^2.20.1",
     "react": "^18.2.0",
