@@ -48,7 +48,22 @@ export default function Vote() {
               <h1>{item.party}</h1>
                 </div>
              
-              <button>  {Number(
+              <button onClick={() =>
+              writeContract({
+                abi,
+                address: voterrrAddress.smartContractAddress as `0x${string}`,
+                functionName: "vote",
+                args: [Number(
+                  JSON.parse(
+                    JSON.stringify(item.candidateId, (key, value) => {
+                      return typeof value === "bigint"
+                        ? value.toString()
+                        : value;
+                    })
+                  )
+                )],
+              })
+              }>  {Number(
                   JSON.parse(
                     JSON.stringify(item.candidateId, (key, value) => {
                       return typeof value === "bigint"
