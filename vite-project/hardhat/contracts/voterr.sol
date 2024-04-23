@@ -6,7 +6,7 @@ contract voterr {
     mapping(address => bool) public isRegisteredVoter;
     mapping(uint256 => Candidate) public candidates;
     mapping(address => bool) public hasVoted;
-    
+
     bool public votingOpen;
     uint256 public totalCandidates;
 
@@ -33,12 +33,21 @@ contract voterr {
     }
 
     event VoterRegistered(address indexed voter);
-    event CandidateRegistered(uint256 indexed candidateId, string name, string party);
+    event CandidateRegistered(
+        uint256 indexed candidateId,
+        string name,
+        string party
+    );
     event Voted(address indexed voter, uint256 indexed candidateId);
     event VotingClosed();
     event VotingReopened();
     event AdminChanged(address indexed oldAdmin, address indexed newAdmin);
-    event ResultDeclared(uint256 indexed winnerId, string name, string party, uint256 votesCount);
+    event ResultDeclared(
+        uint256 indexed winnerId,
+        string name,
+        string party,
+        uint256 votesCount
+    );
 
     modifier onlyAdmin() {
         require(msg.sender == admin, "Only admin can call this function");
@@ -51,7 +60,10 @@ contract voterr {
     }
 
     modifier onlyRegisteredVoter() {
-        require(isRegisteredVoter[msg.sender], "Only registered voters can vote");
+        require(
+            isRegisteredVoter[msg.sender],
+            "Only registered voters can vote"
+        );
         _;
     }
 
@@ -72,13 +84,27 @@ contract voterr {
         emit VoterRegistered(voter);
     }
 
-    function registerCandidate(string memory name, string memory party) external onlyAdmin {
+    function registerCandidate(string memory name, string memory party)
+        external
+        onlyAdmin
+    {
         totalCandidates++;
-        candidates[totalCandidates] = Candidate(totalCandidates, name, party, 0, true);
+        candidates[totalCandidates] = Candidate(
+            totalCandidates,
+            name,
+            party,
+            0,
+            true
+        );
         emit CandidateRegistered(totalCandidates, name, party);
     }
 
-    function vote(uint256 candidateId) external onlyRegisteredVoter onlyDuringVotingPeriod hasNotVoted {
+    function vote(uint256 candidateId)
+        external
+        onlyRegisteredVoter
+        onlyDuringVotingPeriod
+        hasNotVoted
+    {
         require(candidates[candidateId].exists, "Invalid candidate");
 
         hasVoted[msg.sender] = true;
@@ -87,26 +113,49 @@ contract voterr {
         emit Voted(msg.sender, candidateId);
     }
 
-    function getVotesCount(uint256 candidateId) external view returns (uint256) {
+    function getVotesCount(uint256 candidateId)
+        external
+        view
+        returns (uint256)
+    {
         require(candidates[candidateId].exists, "Invalid candidate");
         return candidates[candidateId].votes;
     }
 
-    function getVotesForAllCandidates() external view returns (VoteResult[] memory) {
+    function getVotesForAllCandidates()
+        external
+        view
+        returns (VoteResult[] memory)
+    {
         VoteResult[] memory results = new VoteResult[](totalCandidates);
 
         for (uint256 i = 1; i <= totalCandidates; i++) {
-            results[i - 1] = VoteResult(i, candidates[i].name, candidates[i].party, candidates[i].votes);
+            results[i - 1] = VoteResult(
+                i,
+                candidates[i].name,
+                candidates[i].party,
+                candidates[i].votes
+            );
         }
 
         return results;
     }
 
-    function getCandidatesInfo() external view returns (CandidateInfo[] memory) {
-        CandidateInfo[] memory candidatesInfo = new CandidateInfo[](totalCandidates);
+    function getCandidatesInfo()
+        external
+        view
+        returns (CandidateInfo[] memory)
+    {
+        CandidateInfo[] memory candidatesInfo = new CandidateInfo[](
+            totalCandidates
+        );
 
         for (uint256 i = 1; i <= totalCandidates; i++) {
-            candidatesInfo[i - 1] = CandidateInfo(i, candidates[i].name, candidates[i].party);
+            candidatesInfo[i - 1] = CandidateInfo(
+                i,
+                candidates[i].name,
+                candidates[i].party
+            );
         }
 
         return candidatesInfo;
@@ -130,30 +179,47 @@ contract voterr {
         admin = newAdmin;
     }
 
-     function declareResult() external onlyAdmin returns (VoteResult memory) {
+    function declareResult()
+        public
+        view
+        onlyAdmin
+        returns (VoteResult[] memory)
+    {
         require(!votingOpen, "Voting must be closed to declare the result");
 
-        uint256 winnerId;
         uint256 maxVotes = 0;
+        uint256 winnerCount = 0;
 
+        // Count the number of candidates with the maximum number of votes
         for (uint256 i = 1; i <= totalCandidates; i++) {
             if (candidates[i].votes > maxVotes) {
                 maxVotes = candidates[i].votes;
-                winnerId = i;
+                winnerCount = 1;
+            } else if (candidates[i].votes == maxVotes) {
+                winnerCount++;
             }
         }
 
-        require(winnerId != 0, "No valid winner found");
+        require(winnerCount > 0, "No valid winner found");
 
-        VoteResult memory winnerInfo = VoteResult(
-            winnerId,
-            candidates[winnerId].name,
-            candidates[winnerId].party,
-            candidates[winnerId].votes
-        );
+        // Create an array to store winners
+        VoteResult[] memory winners = new VoteResult[](winnerCount);
 
-        emit ResultDeclared(winnerInfo.candidateId, winnerInfo.name, winnerInfo.party, winnerInfo.votesCount);
+        uint256 winnerIndex = 0;
 
-        return winnerInfo;
+        // Populate the array with winner(s)
+        for (uint256 i = 1; i <= totalCandidates; i++) {
+            if (candidates[i].votes == maxVotes) {
+                winners[winnerIndex] = VoteResult(
+                    i,
+                    candidates[i].name,
+                    candidates[i].party,
+                    candidates[i].votes
+                );
+                winnerIndex++;
+            }
+        }
+
+        return winners;
     }
 }

@@ -7,7 +7,7 @@ import {
   useAccount,
   useWatchContractEvent,
 } from "wagmi";
-import voterabi from "../../../../react_shift/hardhat/artifacts/contracts/voterr.sol/voterr.json";
+import voterabi from "../../../hardhat/artifacts/contracts/voterr.sol/voterr.json";
 import voterrrAddress from "../../smartContractAddress.json";
 import { sepolia } from "wagmi/chains";
 
