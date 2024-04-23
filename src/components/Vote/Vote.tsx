@@ -39,7 +39,7 @@ export default function Vote() {
         <div>
        
         {a &&
-          a.map((item: any) => (
+          a?.map((item: any) => (
             <div className="block1" key={item.candidateId}>
               <div  className="party1">
               <h1>
