@@ -13,19 +13,19 @@
 }
 
 .grid-container1 {
-  display: flex;
-  flex-direction: row;
-justify-content: center;
-align-items: center
+  display: grid;
+  grid-template-columns: auto auto;
+  margin-left: 50px;
+  margin-right: 50px;
 ;}
 
 /* Style for grid items */
 .grid-item1 {
-    display: flex;
-    flex-direction: column;
-  padding: 10px; /* Smaller padding */
-  text-align: center;
-  gap: 50px;
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 200px;
+  /* justify-content: space-between; */
+  /* align-items: center; */
 }
 
 /* Style for the button in the second column */
@@ -63,6 +63,14 @@ align-items: center
     align-items: center;
 }
 
+.new-block{
+  display: flex;
+  flex-direction: column;
+  gap:40px;
+  justify-content: center;
+  align-items: center;
+}
+
 .party1{
     display: flex;
     flex-direction: row;
@@ -72,8 +80,26 @@ align-items: center
 }
 
 .block1 button{
+  width: 300px;
+  height: 50px;
     border-style: solid;
     background-color: #4caf50;
     border: none;
     border-radius: 8px;
+}
+
+.vote-button{
+  width: 300px;
+  height: 50px;
+    border-style: solid;
+    background-color: #4caf50;
+    border: none;
+    border-radius: 8px;
+}
+
+.style{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }

@@ -38,7 +38,7 @@ export default function Admin() {
   result = useReadContract({
     abi,
     address: voterrrAddress.smartContractAddress as `0x${string}`,
-    functionName: "getCandidatesInfo",
+    functionName: "declareResult",
     account: address,
     chainId: sepolia.id,
   });
@@ -243,7 +243,6 @@ export default function Admin() {
         Data :{" "}
         {a &&
           a.map((item: any) => (
-
             <div key={item.candidateId}>
               <div>
                 candidateId:{" "}
@@ -259,6 +258,18 @@ export default function Admin() {
               </div>
               <div>name: {item.name}</div>
               <div>party: {item.party}</div>
+              <div>
+                vote count :{" "}
+                {Number(
+                  JSON.parse(
+                    JSON.stringify(item.votesCount, (key, value) => {
+                      return typeof value === "bigint"
+                        ? value.toString()
+                        : value;
+                    })
+                  )
+                )}
+              </div>
             </div>
           ))}
       </div>

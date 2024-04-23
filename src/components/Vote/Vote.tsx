@@ -31,33 +31,24 @@ export default function Vote() {
   });
   const a = result.data;
 
-  // const run = async(num: any) => {
-  //   onClick={() =>
-  //     writeContract({
-  //       abi,
-  //       address: voterrrAddress.smartContractAddress as `0x${string}`,
-  //       functionName: "vote",
-  //       args: [num],
-  //     })
-  //   }
-  // };
+ 
   return (
     <div className="admin-page1">
       <div id="words">
         <h1>VOTE</h1>
       </div>
-
+{/* <div className="style"> */}
       <div className="grid-container1">
-        <div className="grid-item1">
-          <div>
+        <div >
+          <div className="new-block">
             {a &&
               a?.map((item: any, id: any) => (
                 <div className="block1" key={item.candidateId}>
-                  <div className="party1">
+                  <div className="grid-item1">
                     <h1>{item.name}</h1>
                     <h1>{item.party}</h1>
                   </div>
-
+{/* 
                   <button
                     onClick={() =>
                       writeContract({
@@ -67,7 +58,7 @@ export default function Vote() {
                         functionName: "vote",
                         args: [id + 1],
                       })
-                    }
+                    } className="vote-button"
                   >
                     {" "}
                     {Number(
@@ -79,7 +70,7 @@ export default function Vote() {
                         })
                       )
                     )}
-                  </button>
+                  </button> */}
                 </div>
               ))}
           </div>
@@ -96,6 +87,42 @@ export default function Vote() {
               </div>
             );
           })} */}
+        </div>
+        <div className="grid-item33">
+        <div className="new-block">
+            {a &&
+              a?.map((item: any, id: any) => (
+                <div className="block2" key={item.candidateId}>
+                  {/* <div className="party1">
+                    <h1>{item.name}</h1>
+                    <h1>{item.party}</h1>
+                  </div> */}
+
+                  <button
+                    onClick={() =>
+                      writeContract({
+                        abi,
+                        address:
+                          voterrrAddress.smartContractAddress as `0x${string}`,
+                        functionName: "vote",
+                        args: [id + 1],
+                      })
+                    } className="vote-button"
+                  >
+                    {" "}
+                    {Number(
+                      JSON.parse(
+                        JSON.stringify(item.candidateId, (key, value) => {
+                          return typeof value === "bigint"
+                            ? value.toString()
+                            : value;
+                        })
+                      )
+                    )}
+                  </button>
+                </div>
+              ))}
+          </div>
         </div>
         {/* <div className="grid-item">
           <button>Register Candidate</button>
@@ -130,6 +157,7 @@ export default function Vote() {
           <button id="teribtn">Teri Ki</button>
         </div> */}
       </div>
-    </div>
+      </div>
+    // </div>
   );
 }
