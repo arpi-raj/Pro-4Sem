@@ -10,9 +10,11 @@
  display: flex;
  flex-direction: column;
  justify-content: center;
+ margin-top: 100px;
 }
 
 .grid-container1 {
+  margin-top: 100px;
   display: grid;
   grid-template-columns: auto auto;
   margin-left: 50px;
