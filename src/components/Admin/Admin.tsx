@@ -239,7 +239,7 @@ export default function Admin() {
         </button>
       </div>
 
-      <div>
+      <div className="decalre-result">
         Data :{" "}
         {a &&
           a.map((item: any) => (
